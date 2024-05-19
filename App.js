@@ -4,9 +4,12 @@
  *
  * @format
  */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {Component} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import PageDeRecherche from './PageDeRecherche';
+import ResultatsDeRecherche from './ResultatsDeRecherche';
+/*import type {PropsWithChildren} from 'react';*/
 import {
   SafeAreaView,
   ScrollView,
@@ -25,7 +28,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
+/*type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
@@ -77,8 +80,7 @@ function App(): React.JSX.Element {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            Edit <Text style={styles.highlight}>App.tsx</Text> Oussama Hssarouy
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
@@ -95,24 +97,26 @@ function App(): React.JSX.Element {
     </SafeAreaView>
   );
 }
+*/
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const Pile = createNativeStackNavigator();
 
-export default App;
+function MaPile() {
+  return (
+    <Pile.Navigator>
+      <Pile.Screen name="Accueil" component={PageDeRecherche} />
+      <Pile.Screen name="Resultats" component={ResultatsDeRecherche} />
+    </Pile.Navigator>
+  );
+}
+export default class App extends Component {
+  render() {
+    return (
+      <React.StrictMode>
+        <NavigationContainer>
+          <MaPile />
+        </NavigationContainer>
+      </React.StrictMode>
+    );
+  }
+}
